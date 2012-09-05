@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/zoom.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="zoom.ico"
+   checksum="b3e2a10dbeab7ddb5f4fc0848e229178"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="zoom.ico"/>
+<committed
+   name="zoom.ico"
+   revision="3"/>
+<modify-wcprop
+   name="zoom.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Yellow/24/zoom.ico"/>

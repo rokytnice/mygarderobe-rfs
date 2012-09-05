@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:my="http://java.sun.com/jsf/composite/components"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
+<h:head></h:head>
+<h:body>
+
+ <h1>chat</h1>
+ <h:form id="prodForm">
+			<h:panelGrid columns="4">
+				<h:outputLabel value="Message:" />
+				<h:inputText id="messageInput" styleClass="message"
+					value="#{pushCdiBean2.message}">
+				</h:inputText>
+
+				<a4j:commandButton value="Send" action="#{pushCdiBean2.sendMessage}"
+					execute="@form" render="messageInput" />
+
+				<rich:messages for="messageInput" />
+			</h:panelGrid>
+		</h:form>
+
+		<h:form id="pushout">
+			<h:panelGrid columns="3">
+				<a4j:push address="pushCdi2"
+					ondataavailable="jQuery('&lt;li /&gt;').prependTo('#messages').text(event.rf.data)" />
+
+				<ul id="messages" />
+			</h:panelGrid>
+		</h:form>
+    
+    
+    
+
+
+</h:body>
+</html>

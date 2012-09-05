@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/group.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="group.ico"
+   checksum="c0129bfb4797e26b697c038c17223f96"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="group.ico"/>
+<committed
+   name="group.ico"
+   revision="3"/>
+<modify-wcprop
+   name="group.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Green/24/group.ico"/>

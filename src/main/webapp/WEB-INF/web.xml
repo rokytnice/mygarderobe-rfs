@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<web-app version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+    <display-name>
+        myGarderobe JSF 2.0: Template Application
+    </display-name>
+
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>com.sun.faces.validateXml</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    </servlet>
+
+
+
+
+
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+   
+     <servlet-mapping>
+	    <servlet-name>default</servlet-name>
+	    <url-pattern>*.js</url-pattern>
+  </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>login.jsf</welcome-file>
+        <welcome-file>/app/garderobe.jsf</welcome-file>
+    </welcome-file-list>
+
+    	 
+<login-config>
+     <auth-method>FORM</auth-method>
+     <form-login-config>
+         <form-login-page>/login.jsf</form-login-page>
+         <form-error-page>/login.jsf</form-error-page>
+     </form-login-config>
+</login-config>
+
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>MyGarderobeRealm</web-resource-name>
+            <url-pattern>/app/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>user</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+	<!-- filter-mapping> 
+	   <filter-name>richfaces</filter-name> 
+	   <servlet-name>Faces Servlet</servlet-name>
+	   <dispatcher>REQUEST</dispatcher>
+	   <dispatcher>FORWARD</dispatcher>
+	   <dispatcher>INCLUDE</dispatcher>
+	</filter-mapping-->
+
+<servlet>
+    <servlet-name>imageServlet</servlet-name>
+    <servlet-class>de.rochlitz.mygarderobe.servlet.ImageServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>imageServlet</servlet-name>
+    <url-pattern>/image/*</url-pattern>
+</servlet-mapping>
+
+
+<!-- Push Servlet - listens for user sessions -->
+<servlet>
+    <servlet-name>Push Servlet</servlet-name>
+    <servlet-class>org.richfaces.webapp.PushServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+    <servlet-name>Push Servlet</servlet-name>
+    <url-pattern>/__richfaces_push</url-pattern>
+</servlet-mapping>
+
+<!-- setups servlet-mapping in RichFaces configuration -->
+<context-param>
+    <param-name>org.richfaces.push.handlerMapping</param-name>
+    <param-value>/__richfaces_push</param-value>
+</context-param>
+
+<context-param>
+    <param-name>org.atmosphere.useBlocking</param-name>
+    <param-value>true</param-value>
+</context-param>
+
+<context-param>
+    <param-name>org.richfaces.push.jms.disable</param-name>
+    <param-value>true</param-value>
+</context-param>
+
+
+<context-param>
+    <param-name>org.richfaces.resourceMapping.enabled</param-name>
+    <param-value>true</param-value>
+</context-param>
+
+<context-param>
+    <param-name>org.richfaces.resourceMapping.mappingFile</param-name>
+    <param-value>META-INF/custom-mapping.properties</param-value>
+</context-param>
+
+
+</web-app>

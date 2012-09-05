@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/jquery.ui.resizable.min.js.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="jquery.ui.resizable.min.js"
+   checksum="c14059b12deb5821c173ddbe02779cfe"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="jquery.ui.resizable.min.js"/>
+<committed
+   name="jquery.ui.resizable.min.js"
+   revision="3"/>
+<modify-wcprop
+   name="jquery.ui.resizable.min.js"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ui/minified/jquery.ui.resizable.min.js"/>

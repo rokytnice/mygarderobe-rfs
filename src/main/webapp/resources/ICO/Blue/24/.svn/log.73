@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/power.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="power.ico"
+   checksum="131839613361c21885d7fdd9227ac034"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="power.ico"/>
+<committed
+   name="power.ico"
+   revision="3"/>
+<modify-wcprop
+   name="power.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Blue/24/power.ico"/>

@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/ok.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="ok.ico"
+   checksum="a3d0fdf6be1da59c995a42a389ab17a3"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="ok.ico"/>
+<committed
+   name="ok.ico"
+   revision="3"/>
+<modify-wcprop
+   name="ok.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Yellow/24/ok.ico"/>

@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/windows.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="windows.ico"
+   checksum="cd7202e9c5634c8330d8b348cac3a29c"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="windows.ico"/>
+<committed
+   name="windows.ico"
+   revision="3"/>
+<modify-wcprop
+   name="windows.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Blue/24/windows.ico"/>

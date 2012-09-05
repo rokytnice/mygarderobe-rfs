@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/zoomin.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="zoomin.ico"
+   checksum="23b226459df460d7005c5c8647063da7"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="zoomin.ico"/>
+<committed
+   name="zoomin.ico"
+   revision="3"/>
+<modify-wcprop
+   name="zoomin.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Blue/24/zoomin.ico"/>

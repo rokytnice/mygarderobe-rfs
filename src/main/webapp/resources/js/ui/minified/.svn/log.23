@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/jquery.ui.mouse.min.js.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="jquery.ui.mouse.min.js"
+   checksum="10c48f90c42550a8afeb81ec34650b10"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="jquery.ui.mouse.min.js"/>
+<committed
+   name="jquery.ui.mouse.min.js"
+   revision="3"/>
+<modify-wcprop
+   name="jquery.ui.mouse.min.js"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ui/minified/jquery.ui.mouse.min.js"/>

@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/del.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="del.ico"
+   checksum="f5575240249391f12c299e5e20e4f893"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="del.ico"/>
+<committed
+   name="del.ico"
+   revision="3"/>
+<modify-wcprop
+   name="del.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Blue/24/del.ico"/>

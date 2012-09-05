@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/jquery.ui.tabs.js.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="jquery.ui.tabs.js"
+   checksum="6563f8e28b9f69ee1b2958e14bc0b3bf"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="jquery.ui.tabs.js"/>
+<committed
+   name="jquery.ui.tabs.js"
+   revision="3"/>
+<modify-wcprop
+   name="jquery.ui.tabs.js"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ui/jquery.ui.tabs.js"/>

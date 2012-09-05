@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/money_03.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="money_03.ico"
+   checksum="a65a5478b331fefc8dd1e1fbc8544d00"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="money_03.ico"/>
+<committed
+   name="money_03.ico"
+   revision="3"/>
+<modify-wcprop
+   name="money_03.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Green/24/money_03.ico"/>

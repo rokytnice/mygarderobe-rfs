@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/unlocked_01.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="unlocked_01.ico"
+   checksum="f3385b9df0346e417cd133173bd37dce"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="unlocked_01.ico"/>
+<committed
+   name="unlocked_01.ico"
+   revision="3"/>
+<modify-wcprop
+   name="unlocked_01.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Yellow/32/unlocked_01.ico"/>

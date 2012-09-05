@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/locked.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="locked.ico"
+   checksum="68a0c6c92c5122c8f3afcbb5ac9646c8"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="locked.ico"/>
+<committed
+   name="locked.ico"
+   revision="3"/>
+<modify-wcprop
+   name="locked.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Yellow/24/locked.ico"/>

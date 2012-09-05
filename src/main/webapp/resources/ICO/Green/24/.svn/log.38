@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/door.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="door.ico"
+   checksum="ed6cdcf3c5af7bc69c7367e005a3c255"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="door.ico"/>
+<committed
+   name="door.ico"
+   revision="3"/>
+<modify-wcprop
+   name="door.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Green/24/door.ico"/>

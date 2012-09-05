@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/zoomout.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="zoomout.ico"
+   checksum="0b9afab85382d72e86377745eb2541c0"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="zoomout.ico"/>
+<committed
+   name="zoomout.ico"
+   revision="3"/>
+<modify-wcprop
+   name="zoomout.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Yellow/32/zoomout.ico"/>

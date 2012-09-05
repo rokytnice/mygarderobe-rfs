@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:my="http://java.sun.com/jsf/composite/components"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
+
+<h:head>
+	<title>Java EE 6 Starter Application</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div id="currentUserID"></div>
+<!-- 
+ 	<h:outputScript name="jquery-1.6.2.min.js" target="head" 	library="js" />  
+	<h:outputScript name="jquery-ui-1.8.16.custom.min.js" 	library="js" /> 
+	<h:outputScript name="js/jquery.js" target="head" 	library="js" />
+	<h:outputScript name="ui/jquery.ui.core.js" target="head" 	library="js" />
+	<h:outputScript name="ui/jquery.ui.widget.js" target="head"		library="js" />
+	<h:outputScript name="ui/jquery.ui.mouse.js" target="head" 	library="js" />
+	<h:outputScript name="ui/jquery.ui.position.js" target="head"		library="js" />
+	<h:outputScript name="ui/jquery.ui.autocomplete.js" target="head"		library="js" />
+	<h:outputScript name="ui/jquery.ui.draggable.js" target="head"		library="js" />
+	<h:outputScript name="js/jquery.simplemodal.js" target="head"		library="js" />
+	
+	-->
+	<h:outputScript name="jquery/jquery-1.8.0.js" library="js"></h:outputScript>
+	<h:outputScript name="jquery/ui/jquery.ui.core.js" library="js"></h:outputScript>
+	<h:outputScript name="jquery/ui/jquery.ui.widget.js" library="js"></h:outputScript>
+	<h:outputScript name="jquery/ui/jquery.ui.mouse.js" library="js"></h:outputScript>
+	<h:outputScript name="jquery/ui/jquery.ui.draggable.js" library="js"></h:outputScript>
+	
+	<h:outputScript name="myGarderobe.js" target="head" library="js" />
+	<h:outputStylesheet name="basic.css" library="css"></h:outputStylesheet>
+	<h:outputStylesheet name="jquery-ui.css" library="css"></h:outputStylesheet>
+	<h:outputStylesheet name="mygarderobe.css" library="css" />
+
+</h:head>
+
+<h:body>
+	<div id="container">
+		<h1>MyGarderobe</h1>
+		<div id='div-start-basic-modal-tagging-cklick'>
+			<h:form>
+				<h:commandButton value="logout" action="#{loginController.logout}" />
+			</h:form>
+
+			<a href="#" onClick="neuesFenster()">Bilder hochladen</a>
+			<!--  a href="/myGarderobe/myGarderobeConfiguration.jsp" onclick=" " target="_blank">configuration</a-->
+		</div>
+		<br />
+
+
+		<!-- upload -->
+		<div id="uploadregion">
+			<h:form id="panel" style="width: 500px;">
+				<rich:collapsiblePanel header="Fotos hochladen" switchType="client"
+					expanded="false">
+					<h:form id="upload">
+						<h:panelGrid columns="2" columnClasses="top,top">
+							<rich:fileUpload
+								fileUploadListener="#{fileUploadController.listener}"
+								maxFilesQuantity="#{fileUploadController.uploadsAvailable}"
+								id="upload" immediateUpload="#{fileUploadController.autoUpload}"
+								acceptedTypes="jpg, gif, png, bmp"
+								allowFlash="#{fileUploadController.useFlash}">
+								<!--  <a4j:status></a4j:status>support event="onuploadcomplete" reRender="info" />
+		                -->
+							</rich:fileUpload>
+							<h:panelGroup id="info">
+								<rich:panel bodyClass="info">
+									<f:facet name="header">
+										<h:outputText value="Uploaded Files Info" />
+									</f:facet>
+									<h:outputText value="No files currently uploaded"
+										rendered="#{fileUploadController.size==0}" />
+									<rich:dataGrid columns="1"
+										value="#{fileUploadController.files}" var="file"
+										rowKeyVar="row">
+										<rich:panel bodyClass="rich-laguna-panel-no-header">
+											<h:panelGrid columns="2">
+												<a4j:mediaOutput element="img" mimeType="#{file.mime}"
+													createContent="#{fileUploadController.paint}"
+													value="#{row}" style="width:100px; height:100px;"
+													cacheable="false">
+													<f:param value="#{fileUploadController.timeStamp}"
+														name="time" />
+												</a4j:mediaOutput>
+												<h:panelGrid columns="2">
+													<h:outputText value="File Name:" />
+													<h:outputText value="#{file.name}" />
+													<h:outputText value="File Length(bytes):" />
+													<h:outputText value="#{file.length}" />
+												</h:panelGrid>
+											</h:panelGrid>
+										</rich:panel>
+									</rich:dataGrid>
+								</rich:panel>
+								<br />
+								<a4j:commandButton
+									action="#{fileUploadController.clearUploadData}"
+									reRender="info, upload" value="Clear Uploaded Data"
+									rendered="#{fileUploadController.size>0}" />
+							</h:panelGroup>
+						</h:panelGrid>
+					</h:form>
+				</rich:collapsiblePanel>
+			</h:form>
+		</div>
+		<!-- ende upload -->
+
+		<br /> <br />
+
+		<h:form id="prodForm">
+			<h:panelGrid columns="4">
+				<h:outputLabel value="Message:" />
+				<h:inputText id="clientCommandInput" styleClass="message"
+					value="#{pushClientCommandManager.clientCommand}">
+				</h:inputText>
+
+				<a4j:commandButton value="Send" action="#{pushClientCommandManager.sendClientCommand}"
+					execute="@form" render="clientCommandInput" />
+
+				<rich:messages for="clientCommandInput" />
+			</h:panelGrid>
+		</h:form>
+
+		<h:form id="pushout">
+			<h:panelGrid columns="3">
+				<a4j:push address="PushClientCommand"			ondataavailable="jQuery('&lt;li /&gt;').prependTo('#messages').text(event.rf.data);callFunction(event.rf.data); " />
+				<ul id="messages" />
+			</h:panelGrid>
+		</h:form>
+
+		<!-- tagging input window -->
+		<div id="basic-modal-tagging-window">
+			<div class="ui-widget">
+				<label for="tags">Tags: </label> Tag eingeben: <input id="tags"></input>
+
+				<a href='#' onclick="saveEnteredTag();">save</a> <br /> <br />
+				<div id="tagsOfImage">loading tags ..</div>
+			</div>
+		</div>
+
+		<input type="button" value="resize"
+			onClick="window.open('/myGarderobe/resizeImage.jsf', 'popupWindow', 'dependent=yes, menubar=yes, toolbar=yes, height=600, width=800');" />
+
+		<input id="imageFilter" /> <input type="button" value="Bilder"
+			onClick="getImages();currentMode='image'" /> <input type="button"
+			value="Outfits" onClick="getOutfits();currentMode='outfit'" /> <input
+			type="button" value="100" onClick="setThumnailSize(100);" /> <input
+			type="button" value="150" onClick="setThumnailSize(150);" /> <input
+			type="button" value="200" onClick="setThumnailSize(200);" />
+		<!-- input type="button" value="initContextTestMenu" onClick="initContextTestMenu()"/>
+		 -->
+
+		<input type="button" value="neues Outfit erstellen"
+			onClick="createNewOutfit()" /> <input id="outfitName"
+			value="outfit1" /> <br /> <br /> <br />
+
+
+
+		<div id="body">
+			<div id='div-start-basic-modal-tagging-cklick'>
+				<div id="bildergallery">
+					<ul>
+						<div id="bilder">
+							<h1>bitte warten, lade Bilder ..</h1>
+						</div>
+					</ul>
+				</div>
+				<div id="choicebox"></div>
+			</div>
+		</div>
+
+		<div id="overlayFrameTagInut"></div>
+
+	</div>
+
+</h:body>
+
+</html>

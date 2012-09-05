@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/close.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="close.ico"
+   checksum="13d2f354c9b9728b92007263f10f0254"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="close.ico"/>
+<committed
+   name="close.ico"
+   revision="3"/>
+<modify-wcprop
+   name="close.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Blue/24/close.ico"/>

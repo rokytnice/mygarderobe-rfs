@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/jquery.ui.core.min.js.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="jquery.ui.core.min.js"
+   checksum="35c8345d40fba7cc538b677eef8ec850"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="jquery.ui.core.min.js"/>
+<committed
+   name="jquery.ui.core.min.js"
+   revision="3"/>
+<modify-wcprop
+   name="jquery.ui.core.min.js"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ui/minified/jquery.ui.core.min.js"/>

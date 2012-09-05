@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/Phone.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="Phone.ico"
+   checksum="178c1fdbd5a7005e16f0986f94eec5fc"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="Phone.ico"/>
+<committed
+   name="Phone.ico"
+   revision="3"/>
+<modify-wcprop
+   name="Phone.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Blue/24/Phone.ico"/>

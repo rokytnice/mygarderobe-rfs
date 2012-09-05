@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/apple.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="apple.ico"
+   checksum="90789fd60913764324d2077594f45f1b"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="apple.ico"/>
+<committed
+   name="apple.ico"
+   revision="3"/>
+<modify-wcprop
+   name="apple.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Blue/24/apple.ico"/>

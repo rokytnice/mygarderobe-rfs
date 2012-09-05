@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/flag.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="flag.ico"
+   checksum="b6200a40c2976df1eb5adcdc230cc94b"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="flag.ico"/>
+<committed
+   name="flag.ico"
+   revision="3"/>
+<modify-wcprop
+   name="flag.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Blue/24/flag.ico"/>

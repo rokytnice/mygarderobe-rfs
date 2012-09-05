@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/jquery.ui.selectable.min.js.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="jquery.ui.selectable.min.js"
+   checksum="5fd0d80a25092cf8dc3d9e4828ec0752"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="jquery.ui.selectable.min.js"/>
+<committed
+   name="jquery.ui.selectable.min.js"
+   revision="3"/>
+<modify-wcprop
+   name="jquery.ui.selectable.min.js"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ui/minified/jquery.ui.selectable.min.js"/>

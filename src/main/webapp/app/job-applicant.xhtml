@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/WEB-INF/templates/default.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:my="http://java.sun.com/jsf/composite/components">
+	<ui:define name="content">
+
+		<h:form id="form">
+			<rich:graphValidator value="#{jobApplicant}">
+<h1>GESICHERTER BEREICH</h1>
+				<rich:panel header="Change password">
+
+					<rich:messages />
+
+					<h:panelGrid columns="3">
+
+
+						<h:outputLabel for="firstName" value="First Name: " />
+						<h:inputText id="firstName" value="#{jobApplicant.firstName}" />
+						<br />
+						<h:outputLabel for="lastName" value="Last Name: " />
+						<h:inputText id="lastName" value="#{jobApplicant.lastName}" />
+		 				<br />
+						<h:commandButton value="send" action="#{jobApplicant.save}"></h:commandButton>
+</h:panelGrid>
+					
+				</rich:panel>
+			</rich:graphValidator>
+
+		</h:form>
+		<br />
+    - Server -<br />
+    First Name: <h:outputText value="#{jobApplicant.firstName}" />
+		<br />
+    Last Name: <h:outputText value="#{jobApplicant.lastName}" />
+		<br />
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/music_01.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="music_01.ico"
+   checksum="7931270fa8a28dfe98e151b9a1d8d211"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="music_01.ico"/>
+<committed
+   name="music_01.ico"
+   revision="3"/>
+<modify-wcprop
+   name="music_01.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Blue/24/music_01.ico"/>

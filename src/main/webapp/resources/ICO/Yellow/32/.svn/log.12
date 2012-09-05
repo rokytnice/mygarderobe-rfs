@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/Repeat.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="Repeat.ico"
+   checksum="976eaede17ff13a2a27b853118c581a6"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="Repeat.ico"/>
+<committed
+   name="Repeat.ico"
+   revision="3"/>
+<modify-wcprop
+   name="Repeat.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Yellow/32/Repeat.ico"/>

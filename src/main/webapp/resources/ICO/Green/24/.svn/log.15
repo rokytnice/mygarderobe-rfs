@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/add.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="add.ico"
+   checksum="836150b991a9d19d293220ad5cfc26df"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="add.ico"/>
+<committed
+   name="add.ico"
+   revision="3"/>
+<modify-wcprop
+   name="add.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Green/24/add.ico"/>

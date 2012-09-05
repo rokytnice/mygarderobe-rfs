@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/refresh.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="refresh.ico"
+   checksum="dd414e1e6fcb9f0fcd012a879872dd0e"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="refresh.ico"/>
+<committed
+   name="refresh.ico"
+   revision="3"/>
+<modify-wcprop
+   name="refresh.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Green/24/refresh.ico"/>

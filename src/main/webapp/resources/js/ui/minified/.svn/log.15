@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/jquery.ui.accordion.min.js.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="jquery.ui.accordion.min.js"
+   checksum="c4472933c20ad20fc1d3d07cf3faa1e8"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="jquery.ui.accordion.min.js"/>
+<committed
+   name="jquery.ui.accordion.min.js"
+   revision="3"/>
+<modify-wcprop
+   name="jquery.ui.accordion.min.js"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ui/minified/jquery.ui.accordion.min.js"/>

@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/jquery.ui.datepicker-ro.js.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="jquery.ui.datepicker-ro.js"
+   checksum="f2c145b9c7686a7940d92a780aa295ae"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="jquery.ui.datepicker-ro.js"/>
+<committed
+   name="jquery.ui.datepicker-ro.js"
+   revision="3"/>
+<modify-wcprop
+   name="jquery.ui.datepicker-ro.js"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ui/i18n/jquery.ui.datepicker-ro.js"/>

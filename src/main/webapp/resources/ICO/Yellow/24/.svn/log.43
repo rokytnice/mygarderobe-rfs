@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/feed.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="feed.ico"
+   checksum="1ca3de2d7b6b868f79e324a66cb41bab"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="feed.ico"/>
+<committed
+   name="feed.ico"
+   revision="3"/>
+<modify-wcprop
+   name="feed.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Yellow/24/feed.ico"/>

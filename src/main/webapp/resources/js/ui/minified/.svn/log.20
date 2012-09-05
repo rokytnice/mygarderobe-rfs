@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/jquery.ui.dialog.min.js.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="jquery.ui.dialog.min.js"
+   checksum="cedbf30a51c03d9ea72743da1cea9402"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="jquery.ui.dialog.min.js"/>
+<committed
+   name="jquery.ui.dialog.min.js"
+   revision="3"/>
+<modify-wcprop
+   name="jquery.ui.dialog.min.js"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ui/minified/jquery.ui.dialog.min.js"/>

@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:my="http://java.sun.com/jsf/composite/components"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	>
+
+<ui:repeat var="outfit" value="#{imagesController.outfits}">
+	<div class="divListButton" id="div-#{outfit.outfitId}">
+		<li>
+			<img src="/#{myGarderobeConstant.appName}/image/#{imagesController.currentUserId}/#{imagesController.thumbnailSize}/#{outfit.imageOutfits.toArray()[0].image.filename}" class="listImage"  id="img #{outfit.outfitId}" />
+			  
+			 <a  onclick="chooseOutfit('#{outfit.outfitId}','#{outfit.outfitId}')" id='chooselink#{outfit.outfitId}' class="visible"><img src="/#{myGarderobeConstant.appName}/javax.faces.resource/ok.ico.jsf?ln=ICO/Blue/24/" class="listButton"></img></a>
+			  <a  onclick="idOfTaggedObject= '#{outfit.outfitId}';tagOutfit = '#{outfit.outfitId}';loadTagingFunctions(#{outfit.outfitId});" class='addTag' id='addTag#{outfit.outfitId}'  ><img src="/#{myGarderobeConstant.appName}/javax.faces.resource/chat.ico.jsf?ln=ICO/Blue/24" class="listButton"></img></a>
+			  <a  onclick="deleteOutfit('#{outfit.outfitId}','#{outfit.name}')" id='deleteTag#{outfit.outfitId}' class="visible"><img src="/#{myGarderobeConstant.appName}/javax.faces.resource/close.ico.jsf?ln=ICO/Blue/32" class="listButton"></img></a>
+			
+		 
+		</li>
+	</div>	
+</ui:repeat>
+
+<div style="display:nones" id="lastelementfromserver"> </div>
+</ui:composition>

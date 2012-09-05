@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="mygarderobe" match-name="image"/>
+  <table-filter match-catalog="mygarderobe" match-name="image_outfit"/>
+  <table-filter match-catalog="mygarderobe" match-name="image_tag"/>
+  <table-filter match-catalog="mygarderobe" match-name="outfit"/>
+  <table-filter match-catalog="mygarderobe" match-name="outfit_tag"/>
+  <table-filter match-catalog="mygarderobe" match-name="roles"/>
+  <table-filter match-catalog="mygarderobe" match-name="tag"/>
+  <table-filter match-catalog="mygarderobe" match-name="user"/>
+</hibernate-reverse-engineering>

@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/email.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="email.ico"
+   checksum="50c2d4738fb58d28c633e654a4bcf53a"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="email.ico"/>
+<committed
+   name="email.ico"
+   revision="3"/>
+<modify-wcprop
+   name="email.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Yellow/24/email.ico"/>

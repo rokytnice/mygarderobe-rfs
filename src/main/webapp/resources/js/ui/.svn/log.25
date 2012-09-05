@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/jquery.ui.position.js.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="jquery.ui.position.js"
+   checksum="bc7e0d8a6f64a03565abc5537c5db9da"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="jquery.ui.position.js"/>
+<committed
+   name="jquery.ui.position.js"
+   revision="3"/>
+<modify-wcprop
+   name="jquery.ui.position.js"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ui/jquery.ui.position.js"/>

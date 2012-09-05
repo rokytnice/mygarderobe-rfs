@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:my="http://java.sun.com/jsf/composite/components"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	>
+
+<ui:repeat var="image" value="#{imagesController.images}">
+<li>
+		<div id="div#{image.imageId}"  class="divImage">
+			<img src="/#{myGarderobeConstant.appName}/image/#{imagesController.currentUserId}/#{imagesController.thumbnailSize}/#{image.filename}" class="listImage"  style="position:relative;top:0px;  " title=" bild titel #{image.imageId}" alt="bild name #{image.name}"  name="bild #{image.name}" id="img #{image.imageId}" />
+			  
+			<div class="divListButton" id="div1-#{image.imageId}">
+				 
+		  		  <a  onclick="chooseImage('#{image.imageId}','#{image.filename}')" id='chooselink#{image.imageId}' class="visible"><img src="/#{myGarderobeConstant.appName}/javax.faces.resource/ok.ico.jsf?ln=ICO/Blue/32" class="listButton"></img></a>
+				  <a  onclick="idOfTaggedObject= '#{image.imageId}';loadTagingFunctions(#{image.imageId}" class='addTag' id='addTag#{image.imageId}'  ><img src="/#{myGarderobeConstant.appName}/javax.faces.resource/chat.ico.jsf?ln=ICO/Blue/32" class="listButton"></img></a>
+				  <a  onclick="deleteImage('#{image.imageId}','#{image.filename}')" id='submitTag#{image.imageId}' class="visible"><img src="/#{myGarderobeConstant.appName}/javax.faces.resource/close.ico.jsf?ln=ICO/Blue/32" class="listButton"></img></a>
+				  <a  onclick="openWindowCropImage('#{image.imageId}','#{image.filename}')" id='submitTag#{image.imageId}' class="visible"><img src="/#{myGarderobeConstant.appName}/javax.faces.resource/charts03.ico.jsf?ln=ICO/Blue/32" class="listButton"></img></a>
+			</div>
+		</div>
+	</li>
+		
+</ui:repeat>
+
+<div style="display:nones" id="lastelementfromserver"> </div>
+</ui:composition>

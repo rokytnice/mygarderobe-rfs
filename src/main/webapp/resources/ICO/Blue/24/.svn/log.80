@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/tool.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="tool.ico"
+   checksum="345a33c33c62485fc786c957410a2044"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="tool.ico"/>
+<committed
+   name="tool.ico"
+   revision="3"/>
+<modify-wcprop
+   name="tool.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Blue/24/tool.ico"/>

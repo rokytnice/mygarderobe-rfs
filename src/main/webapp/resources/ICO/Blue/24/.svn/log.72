@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/pause.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="pause.ico"
+   checksum="48a0da479fa956cd1404648de710be46"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="pause.ico"/>
+<committed
+   name="pause.ico"
+   revision="3"/>
+<modify-wcprop
+   name="pause.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Blue/24/pause.ico"/>

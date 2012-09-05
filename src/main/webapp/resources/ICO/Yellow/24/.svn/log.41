@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/earth.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="earth.ico"
+   checksum="0bc099e582c30ad34fb7ea6b5a42ecff"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="earth.ico"/>
+<committed
+   name="earth.ico"
+   revision="3"/>
+<modify-wcprop
+   name="earth.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Yellow/24/earth.ico"/>

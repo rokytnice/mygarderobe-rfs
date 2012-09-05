@@ -1,0 +1,266 @@
+10
+
+dir
+0
+https://svn.code.sf.net/p/mygarderobe/code-0/trunk/WebRoot/ui
+https://svn.code.sf.net/p/mygarderobe/code-0
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+
+
+
+
+
+
+
+
+
+
+
+f2985438-a8ff-425a-a1d9-a2de89d98492
+
+jquery.ui.sortable.js
+file
+
+
+
+add
+
+jquery.ui.datepicker.js
+file
+
+
+
+add
+
+minified
+dir
+
+
+
+add
+
+jquery.effects.transfer.js
+file
+
+
+
+add
+
+jquery.ui.core.js
+file
+
+
+
+add
+
+jquery.ui.progressbar.js
+file
+
+
+
+add
+
+jquery.effects.clip.js
+file
+
+
+
+add
+
+jquery.effects.scale.js
+file
+
+
+
+add
+
+jquery.ui.tabs.js
+file
+
+
+
+add
+
+jquery.effects.core.js
+file
+
+
+
+add
+
+jquery.effects.blind.js
+file
+
+
+
+add
+
+jquery.effects.shake.js
+file
+
+
+
+add
+
+jquery.ui.dialog.js
+file
+
+
+
+add
+
+jquery.ui.autocomplete.js
+file
+
+
+
+add
+
+jquery.effects.slide.js
+file
+
+
+
+add
+
+jquery.ui.selectable.js
+file
+
+
+
+add
+
+jquery.effects.drop.js
+file
+
+
+
+add
+
+jquery.ui.draggable.js
+file
+
+
+
+add
+
+jquery.ui.droppable.js
+file
+
+
+
+add
+
+jquery.effects.highlight.js
+file
+
+
+
+add
+
+i18n
+dir
+
+
+
+add
+
+jquery.ui.button.js
+file
+
+
+
+add
+
+jquery.effects.bounce.js
+file
+
+
+
+add
+
+jquery.effects.pulsate.js
+file
+
+
+
+add
+
+jquery.ui.resizable.js
+file
+
+
+
+add
+
+jquery.ui.slider.js
+file
+
+
+
+add
+
+jquery.ui.widget.js
+file
+
+
+
+add
+
+jquery.effects.fold.js
+file
+
+
+
+add
+
+jquery.ui.mouse.js
+file
+
+
+
+add
+
+jquery.effects.fade.js
+file
+
+
+
+add
+
+jquery.ui.accordion.js
+file
+
+
+
+add
+
+jquery-ui-1.8.16.custom.js
+file
+
+
+
+add
+
+jquery.effects.explode.js
+file
+
+
+
+add
+
+jquery.ui.position.js
+file
+
+
+
+add
+

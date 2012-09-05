@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/clock.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="clock.ico"
+   checksum="a6fcf281d64cfe31f34c131d742896a5"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="clock.ico"/>
+<committed
+   name="clock.ico"
+   revision="3"/>
+<modify-wcprop
+   name="clock.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Yellow/24/clock.ico"/>

@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/jquery.ui.sortable.js.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="jquery.ui.sortable.js"
+   checksum="7e7f9b3542adb2be68ead13577d2329b"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="jquery.ui.sortable.js"/>
+<committed
+   name="jquery.ui.sortable.js"
+   revision="3"/>
+<modify-wcprop
+   name="jquery.ui.sortable.js"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ui/jquery.ui.sortable.js"/>

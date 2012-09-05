@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/arrow_right_down.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="arrow_right_down.ico"
+   checksum="f7fe46b2bd4c5e3626a937baaeb6ddb3"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="arrow_right_down.ico"/>
+<committed
+   name="arrow_right_down.ico"
+   revision="3"/>
+<modify-wcprop
+   name="arrow_right_down.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Yellow/24/arrow_right_down.ico"/>

@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/heart.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="heart.ico"
+   checksum="d2a88c6e94d845daecc51152dc7838f7"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="heart.ico"/>
+<committed
+   name="heart.ico"
+   revision="3"/>
+<modify-wcprop
+   name="heart.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Yellow/32/heart.ico"/>

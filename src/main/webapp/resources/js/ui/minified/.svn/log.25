@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/jquery.ui.progressbar.min.js.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="jquery.ui.progressbar.min.js"
+   checksum="ae1d9455fbd716115805a887d3942d2b"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="jquery.ui.progressbar.min.js"/>
+<committed
+   name="jquery.ui.progressbar.min.js"
+   revision="3"/>
+<modify-wcprop
+   name="jquery.ui.progressbar.min.js"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ui/minified/jquery.ui.progressbar.min.js"/>

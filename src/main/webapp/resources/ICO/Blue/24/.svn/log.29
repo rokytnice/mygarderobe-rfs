@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/charts04.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="charts04.ico"
+   checksum="a13876f46d4840f75a0faefc05fe1bcb"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="charts04.ico"/>
+<committed
+   name="charts04.ico"
+   revision="3"/>
+<modify-wcprop
+   name="charts04.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Blue/24/charts04.ico"/>

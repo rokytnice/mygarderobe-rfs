@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/chat_01.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="chat_01.ico"
+   checksum="3164e2618562bf6b1828c12c72eae05c"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="chat_01.ico"/>
+<committed
+   name="chat_01.ico"
+   revision="3"/>
+<modify-wcprop
+   name="chat_01.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Green/24/chat_01.ico"/>

@@ -1,0 +1,164 @@
+
+	
+	
+	#body{
+		width: 100%;
+	}
+
+	#content ul {
+		list-style-type: none;
+	}
+	#bildergallery ul li {
+		display: inline;
+	}
+	#bildergallery {
+		margin-left: 20px;
+	   	margin-top: 0px;
+	   	float: left; 
+		width: 60%;
+	}
+	#choicebox {
+		width: 40%;
+		
+		height: 80%;
+      margin:-top: 0px;
+      margin-left: 60%; 
+	}	
+	.chosenbild{
+		  z-index: 9;
+		  widht: 120px;
+		  height: 50px;
+		  border:2px solid yellow;		  
+	}
+	
+	a.hidden
+	{
+		display: none;
+	}
+	
+	a.visible
+	{
+		display: inline;
+	}
+	
+	
+	divlistPicture
+	{
+		width:200px;
+		
+		border:1px solid green;
+	}
+	
+	
+	img.listButton
+	{
+		width:16px;
+	
+	}
+	
+	div.divImage {
+		position:relative; display: inline; width: 100px; border:5px; solid:#000;
+	}
+	
+	div.divListButton{
+		 
+		position:relative; top:0px; left:-thumnailSizeInt/2px; z-index:2; display: inline;
+	
+	}
+	
+	a.addTag{
+	
+	}
+
+	
+	img.listImage{
+	
+		
+	}
+	
+	.loadingscreen{
+	
+		width:60em; height; 40em; position:absolute; left:30%; top:50%; border-width:1px; border-color:#000;
+		 
+	}
+	
+	#overlayFrameTagInut{
+		visibility:hidden;
+		z-index:20;
+		position:absolute;
+		top:50%;
+		left:50%;
+		background-color:#000;
+		height:200px;
+		width:300px;
+		opacity: 0.5;
+	}
+	
+	#overlayTagInut{
+		z-index:11;
+		position:relative;
+		top:50%;
+		left:20%;
+		font-size: medium;
+		font-size:10px;
+	}
+	
+	
+	
+	#galleryImageText{
+		  background: none repeat scroll 0 0 #FFFFFF;
+	    font-size: 10px;
+	    left: 40px;
+	    position: relative;
+	    top: -30px;
+	    width: 120px;
+	    z-index: 150;
+	    
+	}
+	
+	#divChosenImage {
+	 background: none repeat scroll 0 0 #EEEEEE;
+	}
+	
+
+
+	/*
+	 * SimpleModal Basic Modal Dialog
+	 * http://www.ericmmartin.com/projects/simplemodal/
+	 * http://code.google.com/p/simplemodal/
+	 *
+	 * Copyright (c) 2010 Eric Martin - http://ericmmartin.com
+	 *
+	 * Licensed under the MIT license:
+	 *   http://www.opensource.org/licenses/mit-license.php
+	 *
+	 * Revision: $Id: basic.css 257 2010-07-27 23:06:56Z emartin24 $
+	 */
+	
+	#basic-modal-tagging-window {display:none;}
+	
+	/* Overlay */
+	#simplemodal-overlay {background-color:#000; cursor:wait;}
+	
+	/* Container */
+	#simplemodal-container {height:360px; width:600px; color:#bbb; background-color:#333; border:4px solid #444; padding:12px;}
+	#simplemodal-container .simplemodal-data {padding:8px;}
+	#simplemodal-container code {background:#141414; border-left:3px solid #65B43D; color:#bbb; display:block; font-size:12px; margin-bottom:12px; padding:4px 6px 6px;}
+	#simplemodal-container a {color:#ddd;}
+	#simplemodal-container a.modalCloseImg {background:url(img/basic/x.png) no-repeat; width:25px; height:29px; display:inline; z-index:3200; position:absolute; top:-15px; right:-16px; cursor:pointer;}
+	#simplemodal-container h3 {color:#84b8d9;}
+	body {background:#fff; color:#333; font: 12px/22px verdana, arial, sans-serif; height:100%; margin:0 auto; width:100%;}
+	h1 {color:#3a6d8c; font-size:34px; line-height:40px; margin:0;}
+	h3 {color:#3a6d8c; font-size:22px; line-height:26px; font-weight:normal; margin:0 0 8px 0;}
+	img {border:0;}
+	#logo {margin-bottom:20px; width:300px;}
+	#logo h1 {color:#666; letter-spacing:-1px; font-weight:normal;}
+	#logo h1 span {color:#444; font-weight:bold;}
+	#logo .title {color:#999; font-size:12px;}
+	/*#container {margin:0 auto; padding-top:20px; width:800px;}
+	*/
+	#content {border-bottom:1px dotted #999; border-top:1px dotted #999; padding:20px 0;}
+	#footer {clear:left; color:#888; margin:20px 0;}
+	#footer a:link, #footer a:visited {color:#888; text-decoration:none;}
+	#footer a:hover {color:#333; text-decoration:underline;}
+

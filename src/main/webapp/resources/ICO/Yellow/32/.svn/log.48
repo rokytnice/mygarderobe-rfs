@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/key.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="key.ico"
+   checksum="fe1059dbff6ef995ba4e642476509b44"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="key.ico"/>
+<committed
+   name="key.ico"
+   revision="3"/>
+<modify-wcprop
+   name="key.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Yellow/32/key.ico"/>

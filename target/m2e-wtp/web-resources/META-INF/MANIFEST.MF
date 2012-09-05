@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Built-By: ar
+Build-Jdk: 1.7.0_05
+Created-By: Maven Integration for Eclipse
+Dependencies: com.google.guava,org.slf4j
+

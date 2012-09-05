@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/jquery.ui.draggable.min.js.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="jquery.ui.draggable.min.js"
+   checksum="8c466e9448e2b021e622219c814dad45"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="jquery.ui.draggable.min.js"/>
+<committed
+   name="jquery.ui.draggable.min.js"
+   revision="3"/>
+<modify-wcprop
+   name="jquery.ui.draggable.min.js"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ui/minified/jquery.ui.draggable.min.js"/>

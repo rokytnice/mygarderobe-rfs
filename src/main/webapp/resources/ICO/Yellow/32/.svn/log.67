@@ -1,0 +1,17 @@
+<rm
+   name=".svn/prop-base/object_13.ico.svn-revert"/>
+<modify-entry
+   committed-rev="3"
+   committed-date="2011-12-30T08:08:53.854426Z"
+   name="object_13.ico"
+   checksum="70b1a759184a50b43268af0bb803d945"
+   last-author="rocytnice"/>
+<delete-changelist
+   name="object_13.ico"/>
+<committed
+   name="object_13.ico"
+   revision="3"/>
+<modify-wcprop
+   name="object_13.ico"
+   propname="svn:wc:ra_dav:version-url"
+   propval="/p/mygarderobe/code-0/!svn/ver/3/trunk/WebRoot/ICO/Yellow/32/object_13.ico"/>
