@@ -1,5 +1,6 @@
 package de.rochlitz.mygarderobe.managedBean;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -10,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 import org.richfaces.json.JSONArray;
 import org.richfaces.json.JSONException;
@@ -19,10 +21,16 @@ import de.rochlitz.mygarderobe.jpa.SuperDAO;
 import de.rochlitz.mygarderobe.jpa.entity.Image;
 import de.rochlitz.mygarderobe.jpa.entity.ImageOutfit;
 import de.rochlitz.mygarderobe.jpa.entity.Outfit;
+import de.rochlitz.mygarderobe.utils.JSONObjectRenderer;
 
 @ManagedBean(name = "imagesController", eager = true)
 @ViewScoped
-public class ImagesController {
+public class ImagesController  implements Serializable{//Note that the bean needs to implement Serializable as it will be stored in the view map which is in turn stored in the sessio
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -198239128027608120L;
 
     @EJB(beanName = "SuperDAO")
     SuperDAO dao;
@@ -33,7 +41,9 @@ public class ImagesController {
     private String imageFilter;
     private String thumbnailSize;
     private String currentOutfitID;
-    private Logger log;
+    @Inject private Logger log;
+
+    private JSONObjectRenderer jSONObjectRenderer;
     
     public List<Image> getImages() {
 
@@ -81,12 +91,25 @@ public class ImagesController {
     public String getCurrentOutfitId(){
 	if (currentOutfitID==null)
 	    currentOutfitID= dao.getCurentUser().getCurrentOutfitId().toString();
-	return currentOutfitID;
+	if(currentOutfitID==null)
+	    return null;
+	JSONObject outfitID = null;
+	try {
+	    outfitID = new JSONObject();
+	    outfitID.put("outfitid", currentOutfitID);
+	} catch (JSONException e) {
+	   log.log(Level.ALL,e.getMessage());
+	}
+	log.log(Level.FINE,"getCurrentOutfitId "+currentOutfitID);
+	jSONObjectRenderer.sendJSONResponce(ec,outfitID);
+	return null;
     }
 
-    public String getCurrentOutfit(){
+    public String getOutfit(){
         
-        String outfitid = null;
+	String outfitid = null;
+	outfitid = ec.getRequestParameterMap().get("outfitid");
+        
 	if(outfitid==null||outfitid.equalsIgnoreCase("null")){
             outfitid=null;
             outfitid = String.valueOf( dao.getCurentUser().getCurrentOutfitId() );
@@ -114,7 +137,7 @@ public class ImagesController {
         			ImageOutfit io = iter.next();
                 		JSONObject image = new JSONObject();
                 		try {
-				    image.put("outfitname", io.getImage().getFilename());
+				    image.put("outfitname", o.getName());
 				    image.put("imageid", io.getImage().getImageId());
 				    image.put("filename", io.getImage().getFilename() );
 				    image.put("name", io.getImage().getName());
@@ -128,19 +151,20 @@ public class ImagesController {
 				}
                 		
         		}
-        		String result =outfit.toString();
-        		return result;
+        		jSONObjectRenderer.sendJSONResponce(ec, outfit);
+        		return null;
         	}
         }
     }
     
     public String updateOutfit(){
 	String outfitName = ec.getRequestParameterMap().get("outfitName");
-	String image = ec.getRequestParameterMap().get("currentOutfit");
+	String bildId = ec.getRequestParameterMap().get("bildId");
+	String currentOutfitID = ec.getRequestParameterMap().get("currentOutfitID");
 	String top = ec.getRequestParameterMap().get("top");
 	String left = ec.getRequestParameterMap().get("left");
 	String zindex = ec.getRequestParameterMap().get("zindex");
-	String result =   dao.updateOutfit(outfitName,image,left,top,zindex) ;
+	String result =   dao.updateOutfit(currentOutfitID,bildId,left,top,zindex) ;
 	return result;
     }
     
@@ -171,5 +195,12 @@ public class ImagesController {
 	    }
     }
     
+    public String updateImageZPosition(){
+	  String outfitid = ec.getRequestParameterMap().get("outfitid"); 
+	  String imageid = ec.getRequestParameterMap().get("imageid"); 
+	  String zindex = ec.getRequestParameterMap().get("zindex"); 
+	  Integer result = dao.updateImageZPositionofOutfit(outfitid,imageid,zindex);
+	  return result.toString();
+    }
 
 }

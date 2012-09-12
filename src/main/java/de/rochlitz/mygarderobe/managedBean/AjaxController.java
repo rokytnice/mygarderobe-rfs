@@ -1,5 +1,7 @@
 package de.rochlitz.mygarderobe.managedBean;
 
+import java.io.Serializable;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -14,7 +16,12 @@ import de.rochlitz.mygarderobe.jpa.SuperDAO;
 
 @ManagedBean(name = "ajaxController", eager = true)
 @ViewScoped
-public class AjaxController {
+public class AjaxController implements Serializable{//Note that the bean needs to implement Serializable as it will be stored in the view map which is in turn stored in the sessio
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6489086561688873010L;
 
     @EJB(beanName = "SuperDAO")
     SuperDAO dao;
@@ -57,6 +64,7 @@ public class AjaxController {
         this.currentUserID = currentUserID;
     }
     
-    
+
+   
 
 }

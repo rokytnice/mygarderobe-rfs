@@ -1,4 +1,4 @@
-package de.rochlitz.mygarderobe.utils;
+package de.rochlitz.mygarderobe.bean.utils;
 
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -25,14 +27,16 @@ import org.imgscalr.Scalr;
 import de.rochlitz.mygarderobe.beans.FileBean;
 import de.rochlitz.mygarderobe.constants.MyGarderobeConstant;
 import de.rochlitz.mygarderobe.jpa.SuperDAO;
-import de.rochlitz.mygarderobe.managedBean.PushClientCommandManager;
 import de.rochlitz.mygarderobe.jpa.entity.Image;
+import de.rochlitz.mygarderobe.managedBean.PushClientCommandManager;
 
 @Stateless(name = "imageProcessingUtil")
 public class ImageProcessingUtil {
 
     @EJB(beanName = "SuperDAO")
     public SuperDAO dao;
+    @Inject
+    private Logger log;
 
     public static void rotateImageOnStorage(String filename, String uploadPath) {
 	// String uploadVerz =
@@ -70,7 +74,7 @@ public class ImageProcessingUtil {
     }
 
 
-    public void createThumbnails(int newWidthSizePixel, String uloadPath, List<Image> images) {
+    public void createThumbnails(int newWidthSizePixel, String uloadPath, List<Image> images) throws IOException {
 
 	Iterator<de.rochlitz.mygarderobe.jpa.entity.Image> iter = images.iterator();
 	while (iter.hasNext()) {
@@ -92,10 +96,10 @@ public class ImageProcessingUtil {
 		    f.mkdir();
 		}
 		ImageIO.write(scaledImg, "jpeg", new File(f.getAbsolutePath() + File.separator + fileName));
-
+		log.log(Level.FINE, "File created: "+f.getAbsolutePath() + File.separator + fileName);
 	    } catch (IOException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
+		log.log(Level.SEVERE, e1.getMessage());
+		throw new IOException(e1);
 	    } // load image
 
 	}
@@ -150,8 +154,10 @@ public class ImageProcessingUtil {
 	return scale;
     }
 
+    
+    //TODO ejb transaction rollback wenn exception ????????
     public void doCropImage(String fileName, String x1, String y1, String x2, String y2, String width, String height, HttpServletRequest request,
-	    String outfitImageSize) {
+	    String outfitImageSize) throws Exception {
 	// String uploadPath =
 	// request.getRealPath(constants.destination_dir_name);
 	String uploadPath = MyGarderobeConstant.upload_dir_name;
@@ -199,7 +205,7 @@ public class ImageProcessingUtil {
 	createThumnailsOfImage(fileName, uploadPath);
     }
 
-    private void createThumnailsOfImage(String fileName, String uploadPath) {
+    private void createThumnailsOfImage(String fileName, String uploadPath) throws Exception {
 	// thumbnails neu erzeugen
 	Image image = new Image();
 	image.setFilename(fileName);
@@ -234,16 +240,26 @@ public class ImageProcessingUtil {
 
     }
 
-    public void createAllThumbnails(String uploadPath, List<Image> imageList) {
+    public void createAllThumbnails(String uploadPath, List<Image> imageList) throws Exception {
 
-	this.createThumbnails(Integer.valueOf(MyGarderobeConstant.size100), uploadPath, imageList);
-	this.createThumbnails(Integer.valueOf(MyGarderobeConstant.size150), uploadPath, imageList);
-	this.createThumbnails(Integer.valueOf(MyGarderobeConstant.size200), uploadPath, imageList);
-	this.createThumbnails(Integer.valueOf(MyGarderobeConstant.sizeMain), uploadPath, imageList);
+	try {
+	    this.createThumbnails(Integer.valueOf(MyGarderobeConstant.size100), uploadPath, imageList);
+	    this.createThumbnails(Integer.valueOf(MyGarderobeConstant.size150), uploadPath, imageList);
+	    this.createThumbnails(Integer.valueOf(MyGarderobeConstant.size200), uploadPath, imageList);
+	    this.createThumbnails(Integer.valueOf(MyGarderobeConstant.sizeMain), uploadPath, imageList);
+	} catch (NumberFormatException e) {
+	    log.log(Level.SEVERE,  e.getMessage());
+	    throw new Exception(e);
+	} catch (IOException e) {
+	    log.log(Level.SEVERE,   e.getMessage() );
+	    throw new Exception(e);
+	}
+	
 
     }
 
-    public void doRestoreImage(String filename, HttpServletRequest request) {
+    //TODO ejb transaction rollback wenn exception?
+    public void doRestoreImage(String filename, HttpServletRequest request) throws Exception {
 	// String uploadPath =
 	// request.getRealPath(constants.destination_dir_name);
 	String uploadPath = MyGarderobeConstant.upload_dir_name;
@@ -273,14 +289,19 @@ public class ImageProcessingUtil {
 	Iterator<FileBean> it = list.iterator();
 	while (it.hasNext()) {
 	    FileBean fb = it.next();
-	    persistFile(fb);
+	    try {
+		persistFile(fb);
+	    } catch (Exception e) {
+		log.log(Level.SEVERE, "Fehler bei persitieren einer datei " + e.getMessage());
+//		    throw new Exception(001);
+	    }
 
 	}
     }
 
  // Defines transaction attribute for method 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void persistFile(FileBean file) throws ServletException, IOException {
+    public List<Image> persistFile(FileBean file) throws ServletException, IOException, Exception {
 	String lowerFileName = file.getName().toLowerCase();
 	
 	file.setName(lowerFileName);
@@ -310,48 +331,18 @@ public class ImageProcessingUtil {
 	    List<Image> imageList = new ArrayList<Image>();
 	    imageList.add(image);
 	    createAllThumbnails(uploadPath, imageList);
-	    pushClientCommand(imageList);
+	    return imageList;
 	    
 	} catch (Exception ex) {
-	    // log("Error encountered while uploading file",ex);
-	    System.err.print(ex);
+	    log.log(Level.SEVERE, "Fehler bei PuchClientCommand.sendClient " + ex.getMessage());
+	    throw new Exception( );
 	}
 
     }
     
-    @Inject
-    PushClientCommandManager pushClientCommandManager;
     
-    /**
-     * erzeugt json array mit javascriptfunction und parameter zum senden per push an client
-     * @param imageList
-     */
-    private void pushClientCommand(List<Image> imageList) {
-	
-	//TODO benutze JSONObject obj = new JSONObject();	  LinkedHashMap m1 = new LinkedHashMap();
-	Iterator<Image> iter = imageList.iterator();
-	String commandJSON = " {\"functionname\": \""+MyGarderobeConstant.javascript_Function_name_push_images+"\", \"functiondata\" :[ ";
-	
-	boolean printKomma = false;
-	while(iter.hasNext()){
-	    Image image =  iter.next();
-	    if(printKomma) commandJSON.concat(",");
-	    commandJSON = commandJSON.concat("{\"fileName\":\""+image.getFilename()+"\", \"id\":\""+image.getImageId()+"\"} ");
-	    printKomma=true;
-	}
-	commandJSON = commandJSON.concat("]}");
-	callPushManager(commandJSON);
-	
-	
-    }
+    
+   
 
-    /**
-     * ruft ajax push manager auf
-     * @param commandJSON
-     */
-    private void callPushManager(String commandJSON) {
-	pushClientCommandManager.setClientCommand(commandJSON);
-	pushClientCommandManager.sendClientCommand();
-	
-    }
+   
 }

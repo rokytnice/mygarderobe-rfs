@@ -14,25 +14,32 @@ var imageRoot = "/"+appName+"/image/";
 var userFolder;
 var iconRootPath = 	"/"+appName+"/javax.faces.resource/";
 var controlerRootPath = "/"+appName+"/app/";
+var sortImageList = "DESC"; //DESC or ASC - sortierung der bilder neuste zu erst oder zu letzt
 
 //initiale position eines bildes beim ausw�hlen zu einem outfit
 var init_posy;  
 var init_posx;  
 var init_zIndex = "2";
 
+//generischer aufruf von function die von server über push gesendet werden (funktionsname + signatur)
 function callFunction(pushedJSONData){
 	console.log(pushedJSONData);
 	var obj = jQuery.parseJSON(pushedJSONData);
 	window[obj.functionname](obj.functiondata);
 }
 
-//server ajax push new images (diff)
+//hängt ein image in die liste ein
 function pushImages(pushedJSONData){
 	bilderElement = document.getElementById("bilder");
 
 	for (var i = 0; i < pushedJSONData.length; ++i){
 		newImageEntry = createNewImagelistEntry(pushedJSONData[i].fileName,pushedJSONData[i].id);
-		bilderElement.appendChild(newImageEntry);
+		if(sortImageList == "ASC" ){
+			bilderElement.appendChild(newImageEntry);
+		}
+		if(sortImageList == "DESC" ){//bei sortierung nach neusten zuerst wir das neue bild vorne eingefügt
+			bilderElement.insertBefore(newImageEntry,bilderElement.firstChild);
+		}
 	}
 }
 
@@ -44,32 +51,70 @@ function createNewImagelistEntry(filename,id){
 	
 	var newImage = document.createElement('img');
 	newImage.setAttribute("class","listImage" );
-	newImage.setAttribute("src", imageRoot+currentUserId+"/"+thumbnailSize+"/"+filename);//siehe ImageProcessingUtil.pushClientCommand()
+	newImage.setAttribute("src", imageRoot+userFolder+"/"+thumbnailSize+"/"+filename);//siehe ImageProcessingUtil.pushClientCommand()
 	
 	var newDivForButtons = document.createElement('div');
 	newDivForButtons.setAttribute("class","divListButton" );
 	
+	
+	//choose image
 	var buttonChoose = document.createElement('a');
 	buttonChoose.setAttribute("class", "visible");
 	buttonChoose.setAttribute("onclick", "chooseImage('"+id+"','"+filename+"')");
 	var buttonChooseImg = document.createElement('img');
 	buttonChooseImg.setAttribute("src", iconRootPath+"ok.ico.jsf?ln=ICO/Blue/32");
-	//TODO andere button dazu
+	buttonChooseImg.setAttribute("class", "listButton");
+	
+	//add tag
+	var buttonTag = document.createElement('a');
+	buttonTag.setAttribute("class", "visible");
+	buttonTag.setAttribute("onclick", "idOfTaggedObject= '"+id+"';loadTagingFunctions("+id+")");
+	var buttonTagImg = document.createElement('img');
+	buttonTagImg.setAttribute("src", iconRootPath+"chat.ico.jsf?ln=ICO/Blue/32");
+	buttonTagImg.setAttribute("class", "listButton");
+	
+	//delete
+	var buttonDelete = document.createElement('a');
+	buttonDelete.setAttribute("class", "visible");
+	buttonDelete.setAttribute("onclick", "deleteImage('"+id+"','"+filename+"')");
+	var buttonDeleteImg = document.createElement('img');
+	buttonDeleteImg.setAttribute("src", iconRootPath+"close.ico.jsf?ln=ICO/Blue/32");
+	buttonDeleteImg.setAttribute("class", "listButton");
+	
+	//crop
+	var buttonCrop = document.createElement('a');
+	buttonCrop.setAttribute("class", "visible");
+	buttonCrop.setAttribute("onclick", "openWindowCropImage('"+id+"','"+filename+"')");
+	var buttonCropImg = document.createElement('img');
+	buttonCropImg.setAttribute("src", iconRootPath+"charts03.ico.jsf?ln=ICO/Blue/32");
+	buttonCropImg.setAttribute("class", "listButton");
 	
 	newImageLi.appendChild(newImageDiv);
 	newImageDiv.appendChild(newImage);
 	newImageDiv.appendChild(newDivForButtons);
+	
 	newDivForButtons.appendChild(buttonChoose);
 	buttonChoose.appendChild(buttonChooseImg);
+
+	newDivForButtons.appendChild(buttonTag);
+	buttonTag.appendChild(buttonTagImg);
+	
+	newDivForButtons.appendChild(buttonDelete);
+	buttonDelete.appendChild(buttonDeleteImg);
+	
+	newDivForButtons.appendChild(buttonCrop);
+	buttonCrop.appendChild(buttonCropImg);
 	
 	
 	return newImageLi;
 }
 
 function getCurrentUserFolder(){	  
-	  $.getJSON(controlerRootPath+"getCurrentUserFolder.jsf", function(data) {
-//		  alert(data);
-		  return userFolder =  data;		 
+	  $.get(controlerRootPath+"getCurrentUserFolder.jsf", function(data) {
+		  console.log("getCurrentUserFolder" + data);
+		  userFolderString =  new String(data);
+		  userFolder = userFolderString.trim();
+		  return userFolder;		 
 		});
 }
 
@@ -190,10 +235,8 @@ function getImages() {
 			}
 		});
 	if(currentOutfitID==null){
-		currentOutfitID = getCurrentOutfitId();	
-		chooseOutfit(currentOutfitID);
+		currentOutfitID = getCurrentOutfitIdFromServer();
 	}
-	//userFolder = getCurrentUserFolder();
 }
 
 
@@ -229,7 +272,7 @@ function showElement(elementId){
 function saveOutfit(bildId,bildName){
 	
 	currentOutfit.push(bildId);
-	outfitNameInput = document.getElementById("outfitName");
+	outfitNameInput = document.getElementById("outfit:outfitName");
 	//divImage = document.getElementById('divChosenImage'+bildId);
 	
 	currentOutfitsString = currentOutfit.join(",");
@@ -241,7 +284,8 @@ function saveOutfit(bildId,bildName){
 		$.getJSON(controlerRootPath+"updateOutfit.jsf",
 				  {
 			outfitName: outfitNameInput.value,
-			currentOutfit: bildId,
+			bildId: bildId,
+			currentOutfitID: currentOutfitID,
 			top: init_posy,
 			left: init_posx,
 			zindex: init_zIndex
@@ -290,7 +334,7 @@ function createNewOutfit() {
 	getImages();
 	var choicebox = document.getElementById("choicebox");
 	choicebox.innerHTML = "neues Outfit zusammenstellen";
-	outFitInput = document.getElementById('outfitName');
+	outFitInput = document.getElementById('outfit:outfitName');
 	outFitInput.value = 'neues Outfit';
 	currentOutfit = new Array();
 	currentOutfitID = null;
@@ -527,18 +571,18 @@ function loadImageInChoiceBox(bildId,bildName) {
 	divChoice.style.left = init_posx;
 	divChoice.style.zIndex = init_zIndex;
 	
-	var choiceImage = document.createElement('img');
-	choiceImage.setAttribute('src', imageRoot+userFolder+"/"+outfitImageSize+"/"+bildName);
-	choiceImage.setAttribute('width', outfitImageSize+'px');		
-	choiceImage.setAttribute('id', 'chosenbild'+bildId); 
+	var choiceImage = document.createElement("img");
+	choiceImage.setAttribute("src", imageRoot+userFolder+"/"+outfitImageSize+"/"+bildName);
+	choiceImage.setAttribute("width", outfitImageSize+"px");		
+	choiceImage.setAttribute("id", "chosenbild"+bildId); 
 	//choiceButtonAnchor.style.zIndex = init_zIndex;
 	
-	var choiceButtonAnchor = document.createElement('a'); 
-	//choiceButtonImage.setAttribute('href', '\#');
-	choiceButtonAnchor.setAttribute('id', bildId+'removeChosenImageButton');
+	var choiceButtonAnchor = document.createElement("a"); 
+	//choiceButtonImage.setAttribute("href", "\#");
+	choiceButtonAnchor.setAttribute("id", bildId+"removeChosenImageButton");
 	//choiceButtonAnchor.style.zIndex = init_zIndex;
-	choiceButtonAnchor.setAttribute('class', 'visible');
-	choiceButtonAnchor.setAttribute('onclick', 'removeChosenImageFromOutfit(\''+bildName+'\',\''+bildId+'\')');
+	choiceButtonAnchor.setAttribute("class", "visible");
+	choiceButtonAnchor.setAttribute("onclick", "removeChosenImageFromOutfit('"+bildName+"','"+bildId+"')");
 
 	
 	var choiceButtonImage = document.createElement('img'); 
@@ -550,7 +594,7 @@ function loadImageInChoiceBox(bildId,bildName) {
 	var choiceButtonAnchor_indexUpChosenImageButton = document.createElement('a'); 
 	choiceButtonAnchor_indexUpChosenImageButton.setAttribute('id', bildId+'indexUpChosenImageButton');
 	choiceButtonAnchor_indexUpChosenImageButton.setAttribute('class', 'visible');
-	choiceButtonAnchor_indexUpChosenImageButton.setAttribute('onclick', 'imagesIndexUP(\''+bildId+'\')');
+	choiceButtonAnchor_indexUpChosenImageButton.setAttribute('onclick', 'imagesIndexUP('+bildId+')');
 
 	var choiceButtonImage_IndexUP = document.createElement('img'); 
 	choiceButtonImage_IndexUP.setAttribute('src', iconRootPath+'arrow_up.ico.jsf?ln=ICO/Blue/24');
@@ -578,24 +622,23 @@ function loadImageInChoiceBox(bildId,bildName) {
 	//executeRemoteJavascript(controlerRootPath+"getChosenImageJavascriptFunctions.jsf?bildId="+bildId);
 }
 
-function chooseOutfit(imageid,outfitid){
+function getOutfit(imageid,outfitid){
 	cleanChoiceBox();
-	outfitNameInput = document.getElementById("outfitName");
+	console.log("imageid:"+imageid+";  outfitid:"+outfitid);
+	outfitNameInput = document.getElementById("outfit:outfitName");
 	outfitNameInput.value = name;
 	currentOutfitID = outfitid; 
 	
-	var res = $.getJSON(controlerRootPath+"getCurrentOutfit.jsf" , {outfitid: outfitid, ajax: 'true'}, function(images){
-		alert(images);
-		for (var i = 0; i < images.length; i++) {
-//    	  alert(images[i]);
-    	  
-		  outfitname = images[i].outfitname;
-		  bildId = images[i].imageid;
-    	  name = images[i].filename;
-    	  bildtop = images[i].top;
-    	  bildleft = images[i].left;
-    	  init_zIndex = images[i].zindex;
-    	  outfitNameInput = document.getElementById("outfitName"); 
+	var res = $.getJSON(controlerRootPath+"getOutfit.jsf" ,  {outfitid: outfitid, ajax: 'true'}, function(data){
+		console.log("getOutfit"+data);
+		for (var i = 0; i < data.length; i++) {
+		  outfitname = data[i].outfitname;
+		  bildId = data[i].imageid;
+    	  name = data[i].filename;
+    	  bildtop = data[i].top;
+    	  bildleft = data[i].left;
+    	  init_zIndex = data[i].zindex;
+    	  outfitNameInput = document.getElementById("outfit:outfitName"); 
 		  outfitNameInput.value = outfitname;
 
     	  var divChoice = document.createElement('div'); 
@@ -614,33 +657,33 @@ function chooseOutfit(imageid,outfitid){
 			choiceImage.setAttribute('id', bildId+'chosenbild'); 
 			//choiceImage.style.zIndex = init_zIndex;
 			
-			var choiceButtonAnchor = document.createElement('a'); 
-			//choiceButtonImage.setAttribute('href', '\#');
-			choiceButtonAnchor.setAttribute('id', bildId+'removeChosenImageButton');
+			var choiceButtonAnchor = document.createElement("a"); 
+			//choiceButtonImage.setAttribute("href", "\#");
+			choiceButtonAnchor.setAttribute("id", bildId+"removeChosenImageButton");
 			//choiceButtonAnchor.style.zIndex = init_zIndex;
-			choiceButtonAnchor.setAttribute('class', 'visible');
-			choiceButtonAnchor.setAttribute('onclick', 'removeChosenImageFromOutfit(\''+name+'\',\''+bildId+'\')');
+			choiceButtonAnchor.setAttribute("class", "visible");
+			choiceButtonAnchor.setAttribute("onclick", "removeChosenImageFromOutfit('"+name+"','"+bildId+"')");
 		
-			var choiceButtonImage = document.createElement('img'); 
-			choiceButtonImage.setAttribute('src', iconRootPath+'close.ico?ln=ICO/Blue/24');
-			choiceButtonImage.setAttribute('id', bildId+'chosenImageButton');
+			var choiceButtonImage = document.createElement("img"); 
+			choiceButtonImage.setAttribute("src", iconRootPath+"close.ico.jsf?ln=ICO/Blue/24");
+			choiceButtonImage.setAttribute("id", bildId+"chosenImageButton");
 			//choiceButtonImage.style.zIndex = init_zIndex;
-			choiceButtonImage.setAttribute('class', 'listButton');
+			choiceButtonImage.setAttribute("class", "listButton");
 
-			var choiceButtonAnchor_indexUpChosenImageButton = document.createElement('a'); 
-			//choiceButtonImage.setAttribute('href', '\#');
-			choiceButtonAnchor_indexUpChosenImageButton.setAttribute('id', bildId+'indexUpChosenImageButton');
+			var choiceButtonAnchor_indexUpChosenImageButton = document.createElement("a"); 
+			//choiceButtonImage.setAttribute("href", "\#");
+			choiceButtonAnchor_indexUpChosenImageButton.setAttribute("id", bildId+"indexUpChosenImageButton");
 			//choiceButtonAnchor_indexUpChosenImageButton.style.zIndex = init_zIndex;
-			choiceButtonAnchor_indexUpChosenImageButton.setAttribute('class', 'visible');
-			choiceButtonAnchor_indexUpChosenImageButton.setAttribute('onclick', 'imagesIndexUP(\''+bildId+'\')');
+			choiceButtonAnchor_indexUpChosenImageButton.setAttribute("class", "visible");
+			choiceButtonAnchor_indexUpChosenImageButton.setAttribute("onclick", "imagesIndexUP('"+bildId+"')");
 
-			var chosenImageButton_IndexUP = document.createElement('img'); 
-			chosenImageButton_IndexUP.setAttribute('src', iconRootPath+'arrow_up.ico?ln=ICO/Blue/24');
-			chosenImageButton_IndexUP.setAttribute('id', bildId+'chosenImageButton_IndexUP');
+			var chosenImageButton_IndexUP = document.createElement("img"); 
+			chosenImageButton_IndexUP.setAttribute("src", iconRootPath+"arrow_up.ico.jsf?ln=ICO/Blue/24");
+			chosenImageButton_IndexUP.setAttribute("id", bildId+"chosenImageButton_IndexUP");
 			//chosenImageButton_IndexUP.style.zIndex = init_zIndex;
-			chosenImageButton_IndexUP.setAttribute('class', 'listButton');
+			chosenImageButton_IndexUP.setAttribute("class", "listButton");
 			
-			var choicebox = document.getElementById('choicebox');
+			var choicebox = document.getElementById("choicebox");
 			choicebox.appendChild(divChoice);	
 			divChoice.appendChild(choiceImage);
 			divChoice.appendChild(choiceButtonAnchor);
@@ -750,11 +793,29 @@ $(document).ready(function() {
 });
 
 
-function getCurrentOutfitId(){
-	$.get(controlerRootPath+"getCurrentOutfitId.jsf", function(data) {
-		currentOutfitID = data;
-	});
-return currentOutfitID;	
+function getCurrentOutfitIdFromServer(){
+	$.get(controlerRootPath+"getCurrentOutfitId.jsf", null,  function(data) {
+		console.log("getCurrentOutfitId: "+data);
+		var currentOutfitID = new String(data.outfitid);
+		currentOutfitID=currentOutfitID.trim();
+		console.log(currentOutfitID);
+		getOutfit(null,currentOutfitID);
+		return currentOutfitID;	
+	}, "json");
+
 	
 }
+
 userFolder = getCurrentUserFolder();
+
+
+function getCurrentOutfitID(){
+	console.log(" getCurrentOutfitID() called: "+currentOutfitID);
+	return currentOutfitID;
+}
+
+function setCategoryTitle(title){
+	categoryTitle = document.getElementById("categoryTitle");
+	categoryTitle.innerHTML = title;
+	
+}

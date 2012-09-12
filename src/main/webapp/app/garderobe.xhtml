@@ -10,7 +10,7 @@
 	xmlns:rich="http://richfaces.org/rich">
 
 <h:head>
-	<title>Java EE 6 Starter Application</title>
+	<title>my garderobe .. </title>    
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <div id="currentUserID"></div>
 <!-- 
@@ -41,7 +41,7 @@
 
 <h:body>
 	<div id="container">
-		<h1>MyGarderobe</h1>
+		<h1  id="categoryTitle">MyGarderobe</h1>
 		<div id='div-start-basic-modal-tagging-cklick'>
 			<h:form>
 				<h:commandButton value="logout" action="#{loginController.logout}" />
@@ -113,6 +113,7 @@
 
 		<br /> <br />
 
+<!-- push -->
 		<h:form id="prodForm">
 			<h:panelGrid columns="4">
 				<h:outputLabel value="Message:" />
@@ -129,11 +130,12 @@
 
 		<h:form id="pushout">
 			<h:panelGrid columns="3">
-				<a4j:push address="PushClientCommand"			ondataavailable="jQuery('&lt;li /&gt;').prependTo('#messages').text(event.rf.data);callFunction(event.rf.data); " />
+				<a4j:push address="#{pushClientCommandManager.push_cdi_topic}" ondataavailable="jQuery('&lt;li /&gt;').prependTo('#messages').text(event.rf.data);callFunction(event.rf.data); " />
 				<ul id="messages" />
 			</h:panelGrid>
 		</h:form>
-
+		
+<!-- push end -->
 		<!-- tagging input window -->
 		<div id="basic-modal-tagging-window">
 			<div class="ui-widget">
@@ -147,18 +149,30 @@
 		<input type="button" value="resize"
 			onClick="window.open('/myGarderobe/resizeImage.jsf', 'popupWindow', 'dependent=yes, menubar=yes, toolbar=yes, height=600, width=800');" />
 
-		<input id="imageFilter" /> <input type="button" value="Bilder"
-			onClick="getImages();currentMode='image'" /> <input type="button"
-			value="Outfits" onClick="getOutfits();currentMode='outfit'" /> <input
+		<input id="imageFilter" /><input type="button" value="Bilder"
+			onClick="getImages();currentMode='image';setCategoryTitle('images');" /> <input type="button"
+			value="Outfits" onClick="getOutfits();currentMode='outfit';setCategoryTitle('outfits');" /> <input
 			type="button" value="100" onClick="setThumnailSize(100);" /> <input
 			type="button" value="150" onClick="setThumnailSize(150);" /> <input
 			type="button" value="200" onClick="setThumnailSize(200);" />
 		<!-- input type="button" value="initContextTestMenu" onClick="initContextTestMenu()"/>
 		 -->
+		 
+<!-- ajax outfit name -->
+    	
+		
+		
+		<h:form id="outfit"> 
+			<input type="button" value="neues Outfit erstellen"  onClick="createNewOutfit()" />
+                <h:inputText value="#{currentOutfitControllerBean.outfitname}" id="outfitName" >
+                    <a4j:ajax event="keyup"  render="outfitName" execute="@form" />
+                    <a4j:param name="currentOutfitID" value="getCurrentOutfitID()"  noEscape="true"   assignTo="#{currentOutfitControllerBean.outfitId}"></a4j:param>
+                </h:inputText>
+        </h:form>
+<!-- ajax outfit name -->
 
-		<input type="button" value="neues Outfit erstellen"
-			onClick="createNewOutfit()" /> <input id="outfitName"
-			value="outfit1" /> <br /> <br /> <br />
+
+			<br /> <br />
 
 
 

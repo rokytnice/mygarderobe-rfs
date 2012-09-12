@@ -31,7 +31,7 @@ public class ImageHome {
 	    entityManager.persist(transientInstance);
 	    log.log(Level.FINEST,"persist successful");
 	} catch (RuntimeException re) {
-	    log.log(Level.ALL,"persist failed", re);
+	    log.log(Level.SEVERE,"persist failed", re);
 	    throw re;
 	}
     }
@@ -42,7 +42,7 @@ public class ImageHome {
 	    entityManager.remove(persistentInstance);
 	    log.log(Level.FINEST,"remove successful");
 	} catch (RuntimeException re) {
-	    log.log(Level.ALL,"remove failed", re);
+	    log.log(Level.SEVERE,"remove failed", re);
 	    throw re;
 	}
     }
@@ -54,7 +54,7 @@ public class ImageHome {
 	    log.log(Level.FINEST,"merge successful");
 	    return result;
 	} catch (RuntimeException re) {
-	    log.log(Level.ALL,"merge failed", re);
+	    log.log(Level.SEVERE,"merge failed", re);
 	    throw re;
 	}
     }
@@ -66,7 +66,7 @@ public class ImageHome {
 	    log.log(Level.FINEST,"get successful");
 	    return instance;
 	} catch (RuntimeException re) {
-	    log.log(Level.ALL,"get failed", re);
+	    log.log(Level.SEVERE,"get failed", re);
 	    throw re;
 	}
     }

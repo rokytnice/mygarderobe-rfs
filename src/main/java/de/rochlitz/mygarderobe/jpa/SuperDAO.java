@@ -25,6 +25,8 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.type.descriptor.sql.TinyIntTypeDescriptor;
+
 import de.rochlitz.mygarderobe.beans.FileBean;
 import de.rochlitz.mygarderobe.jpa.entity.Image;
 import de.rochlitz.mygarderobe.jpa.entity.ImageOutfit;
@@ -71,8 +73,8 @@ public class SuperDAO  {
 		entityManager.persist(tag);
 
 	} catch (Exception e) {
-	    log.log(Level.ALL, "save ImagesTag failed");
-	    throw new RuntimeException("save ImagesTag failed" + e.getMessage());
+	    log.log(Level.SEVERE, "saveTag() error while persist tag "+e.getMessage());
+	    throw new RuntimeException("saveTag()  tag saving  failed" + e.getMessage());
 	}
     	
 	
@@ -88,7 +90,7 @@ public class SuperDAO  {
 		entityManager.persist(it);
 
 	    } catch (RuntimeException re) {
-		log.log(Level.ALL,re.getMessage());
+		log.log(Level.SEVERE,"saveTag() error while persist imageTag "+re.getMessage());
 		throw re;
 	    }
 	} else if (type.equalsIgnoreCase(SuperDAO.RESOURCE_TYPE_OUTFIT)) {
@@ -106,7 +108,7 @@ public class SuperDAO  {
 		entityManager.persist(it);
 
 	    } catch (RuntimeException re) {
-		log.log(Level.ALL,re.getMessage());
+		log.log(Level.SEVERE,"saveTag() save outfit failed "+re.getMessage());
 		throw re;
 	    }
 	}
@@ -135,7 +137,7 @@ public class SuperDAO  {
 	    List result = query.getResultList();
 	    return result;
 	} catch (RuntimeException re) {
-	    log.log(Level.ALL,re.getMessage());
+	    log.log(Level.SEVERE,"getTagsOfResource() "+re.getMessage());
 	    
 	    throw re;
 	}
@@ -160,7 +162,7 @@ public class SuperDAO  {
 	    user = (User)query.getResultList().get(0);
 	} catch (Exception e) {
 	    // TODO Auto-generated catch block
-	    log.log(Level.ALL,e.getMessage());
+	    log.log(Level.SEVERE,"getUserByUserName() "+e.getMessage());
 	}
 	
 //	log.log(Level.FINEST,"current user in session " + username + " has id: " + user.getUserId());
@@ -181,6 +183,9 @@ public class SuperDAO  {
 	    } else {
 		queryString = queryString.concat(" WHERE i.user.userId=:userid");
 	    }
+	    
+	    queryString = queryString.concat(" ORDER BY i.imageId  DESC");
+	    
 	    Query query = entityManager.createQuery(queryString);
 	    query.setParameter("userid", u.getUserId());
 
@@ -192,7 +197,7 @@ public class SuperDAO  {
 	    List result = query.getResultList();
 	    return result;
 	} catch (RuntimeException re) {
-	    log.log(Level.ALL,re.getMessage());
+	    log.log(Level.SEVERE,"getImagesOfTag() "+re.getMessage());
 	    
 	    throw re;
 	}
@@ -219,7 +224,7 @@ public class SuperDAO  {
 	    List<Outfit> result = query.getResultList();
 	    return result;
 	} catch (RuntimeException re) {
-	    log.log(Level.ALL,re.getMessage());
+	    log.log(Level.SEVERE,"getOutfitsOfTag() "+re.getMessage());
 	    
 	    throw re;
 	}
@@ -240,7 +245,7 @@ public class SuperDAO  {
 
 	} catch (Exception e) {
 	    //TODO log
-	    log.log(Level.ALL,e.getMessage());
+	    log.log(Level.SEVERE," "+this.getClass().getName()+".saveOutfit() Exception aufgetreten, Persistenzrollback durchgeführt." + e.getMessage());
 	    sessioncontext.getRollbackOnly();
 	    throw new PersistenceException(" "+this.getClass().getName()+".saveOutfit() Exception aufgetreten, Persistenzrollback durchgeführt.");//dies
 	}
@@ -249,13 +254,13 @@ public class SuperDAO  {
 
  // Defines transaction attribute for method 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public String updateOutfit(String outfitName, String imageId, String leftPosition, String topPosition, String zindex) {
+    public String updateOutfit(String outfitId, String imageId, String leftPosition, String topPosition, String zindex) {
 
-	Outfit o = new Outfit();
-	o.setName(outfitName);
+	Outfit o = null;
 	try {
-
-	    entityManager.find(Outfit.class, o);
+	    
+//	    findOutfit(outfitId, getCurentUser().getUserId());
+	    o = entityManager.find(Outfit.class, Integer.parseInt(outfitId));
 
 	    //TODO ???
 	    //	    if (outfitDB.size() > 0) {
@@ -263,8 +268,7 @@ public class SuperDAO  {
 //	    } else {// neues outfit
 //		return String.valueOf(saveOutfit(outfitName, imageId));
 //	    }
-	    o.setName(outfitName);
-	    if (imageAlreadyInOutfit(imageId, outfitName))
+	    if ( o==null||imageAlreadyInOutfit(imageId, outfitId) )
 		return null;// image ist bereit in outfit - TODO ggf. sp�ter
 			    // entsprechende meldung an user (�ber exception
 			    // l�sen)
@@ -290,8 +294,7 @@ public class SuperDAO  {
 
 	    // saveImagesForOutfit(imageId, o.getOutfitId());
 	} catch (Exception e) {
-	    // TODO Auto-generated catch block
-	    log.log(Level.ALL,"rollback wird gestartet, "+e.getMessage());
+	    log.log(Level.SEVERE,"updateOutfit() - rollback wird gestartet, "+e.getMessage());
 	    sessioncontext.getRollbackOnly();
 	    return "false";
 	}
@@ -321,11 +324,7 @@ public class SuperDAO  {
     }
 
     public String checkCreateOutfitName(String outfitName) {
-	List<Outfit> outfitDB = this.findObjectByProperties("Outfit", "name", "user_id", outfitName, this.getCurentUser().getUserId()); // checken
-																	// ob
-																	// name
-																	// bereits
-																	// vergeben
+	List<Outfit> outfitDB = this.findOutfit(outfitName, this.getCurentUser().getUserId()); 
 	if (outfitDB.size() > 0) {
 	    outfitName = checkCreateOutfitName(outfitName.concat("1"));// TODO
 								       // hier
@@ -354,8 +353,7 @@ public class SuperDAO  {
 	        entityManager.persist(oi);
 	    }
 	} catch (NumberFormatException e) {
-	    // TODO Auto-generated catch block
-	    log.log(Level.ALL,e.getMessage());
+	    log.log(Level.SEVERE,"saveImagesForOutfit "+ e.getMessage());
 	}
 
     }
@@ -370,7 +368,7 @@ public class SuperDAO  {
 	    List<Image> result = query.getResultList();
 	    return result;
 	} catch (RuntimeException re) {
-	    log.log(Level.ALL," get images of Tag failed" + re.getMessage());
+	    log.log(Level.SEVERE,"getImagesOfOutfit: get images of Tag failed" + re.getMessage());
 	    
 	    throw re;
 	}
@@ -400,19 +398,18 @@ public class SuperDAO  {
     }
 
     
-    public List findObjectByProperties(String model, String propertyName, String propertyName1, Object value, Object value1) {
-//	log.log(Level.FINEST,"finding Outfit instance with property: " + propertyName + ", value: " + value);
+    public List findOutfit(  String name, Integer userid) {
 	try {
 	    String queryString = "SELECT o FROM Outfit o, User u LEFT JOIN FETCH o.user WHERE o.name = :name AND u.userId = :userid ";
 
 	    Query queryObject = entityManager.createQuery(queryString);
-	    queryObject.setParameter("name", value);
-	    queryObject.setParameter("userid", value1);
+	    queryObject.setParameter("name", name);
+	    queryObject.setParameter("userid", userid);
 	    List returnlist = queryObject.getResultList();
 	    return returnlist;
 	} catch (Exception re) {
-	    log.log(Level.ALL,"find by property name failed", re);
-	    return null;//TODO ??
+	    log.log(Level.SEVERE,"findOutfit() "+"find by property name failed", re);
+	    return null;
 	}
     }
 
@@ -439,15 +436,13 @@ public class SuperDAO  {
         	    	}
 	        }
 	    } catch (NumberFormatException e) {
-	        // TODO Auto-generated catch block
-		log.log(Level.ALL,e.getMessage());
+		log.log(Level.SEVERE,"updateImageOutfit() "+e.getMessage());
     	    } catch (NullPointerException e) {
-        	    // TODO Auto-generated catch block
-    		log.log(Level.ALL,e.getMessage());
+    		log.log(Level.SEVERE,"updateImageOutfit() "+e.getMessage());
     	    } catch (Exception e) {
-	    // TODO Auto-generated catch block
-		log.log(Level.ALL,e.getMessage());
+		log.log(Level.SEVERE,"updateImageOutfit() "+e.getMessage());
 	    }
+	    log.log(Level.FINE,"updateImageOutfit() sucessful outfitid: "+outfitid + " imageid:  " + imageid);
     }
 
     
@@ -470,7 +465,7 @@ public class SuperDAO  {
 	    }
 	} catch (Exception e) {
 	    // TODO Auto-generated catch block
-	    log.log(Level.ALL,e.getMessage());
+	    log.log(Level.SEVERE,"deleteImageOfOutfit() "+e.getMessage());
 	}
     }
 
@@ -523,7 +518,7 @@ public class SuperDAO  {
 
 	} catch (NumberFormatException e) {
 	    // TODO Auto-generated catch block
-	    log.log(Level.ALL,e.getMessage());
+	    log.log(Level.SEVERE,"updateImageZPositionofOutfit() "+e.getMessage());
 		sessioncontext.getRollbackOnly();
 	    //TODO richtig?
 	}
@@ -556,5 +551,17 @@ public class SuperDAO  {
     public <T> T find(Class<T> entityClass, Object primaryKey) {
 	return entityManager.find(entityClass,primaryKey);
 
+    }
+
+    public void updateCurrentOutfitName(String outfitname, String outfitIdparam) {
+	Integer outfitid = null;
+	if(outfitIdparam!=null){
+	     outfitid = Integer.parseInt(outfitIdparam);
+	}else{
+	    outfitid = getCurentUser().getCurrentOutfitId();
+	}
+	Outfit outfit = entityManager.find(Outfit.class, outfitid);
+	outfit.setName(outfitname);
+	log.fine("currentOutfitControllerBean sucessful: name "+outfitname + " id: "+outfitid);
     }
 }

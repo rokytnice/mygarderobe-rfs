@@ -12,7 +12,7 @@
 		<li>
 			<img src="/#{myGarderobeConstant.appName}/image/#{imagesController.currentUserId}/#{imagesController.thumbnailSize}/#{outfit.imageOutfits.toArray()[0].image.filename}" class="listImage"  id="img #{outfit.outfitId}" />
 			  
-			 <a  onclick="chooseOutfit('#{outfit.outfitId}','#{outfit.outfitId}')" id='chooselink#{outfit.outfitId}' class="visible"><img src="/#{myGarderobeConstant.appName}/javax.faces.resource/ok.ico.jsf?ln=ICO/Blue/24/" class="listButton"></img></a>
+			 <a  onclick="getOutfit('#{outfit.outfitId}','#{outfit.outfitId}')" id='chooselink#{outfit.outfitId}' class="visible"><img src="/#{myGarderobeConstant.appName}/javax.faces.resource/ok.ico.jsf?ln=ICO/Blue/24/" class="listButton"></img></a>
 			  <a  onclick="idOfTaggedObject= '#{outfit.outfitId}';tagOutfit = '#{outfit.outfitId}';loadTagingFunctions(#{outfit.outfitId});" class='addTag' id='addTag#{outfit.outfitId}'  ><img src="/#{myGarderobeConstant.appName}/javax.faces.resource/chat.ico.jsf?ln=ICO/Blue/24" class="listButton"></img></a>
 			  <a  onclick="deleteOutfit('#{outfit.outfitId}','#{outfit.name}')" id='deleteTag#{outfit.outfitId}' class="visible"><img src="/#{myGarderobeConstant.appName}/javax.faces.resource/close.ico.jsf?ln=ICO/Blue/32" class="listButton"></img></a>
 			
